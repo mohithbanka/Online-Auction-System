@@ -1,24 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import { SocketProvider } from './context/SocketContext'; // Add this import
-import RequireAuth from './components/RequireAuth';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import CreateAuction from './pages/CreateAuction';
-import Profile from './pages/Profile';
-import Cart from './pages/Cart';
-import AuctionList from './pages/AuctionList';
-import BidPage from './pages/BidPage';
-import Notifications from './pages/Notifications';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { SocketProvider } from "./context/SocketContext"; // Add this import
+import RequireAuth from "./components/RequireAuth";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import CreateAuction from "./pages/CreateAuction";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import AuctionList from "./pages/AuctionList";
+import BidPage from "./pages/BidPage";
+import Notifications from "./pages/Notifications";
 
 function App() {
   return (
     <AuthProvider>
-      <SocketProvider> {/* Add SocketProvider here */}
+      <SocketProvider>
+        {" "}
+        {/* Add SocketProvider here */}
         <Router>
           <Navbar />
           <Routes>
@@ -31,7 +33,6 @@ function App() {
             <Route path="/auctions" element={<AuctionList />} />
             <Route path="/auctions/:id" element={<BidPage />} />
             <Route path="/notifications" element={<Notifications />} />
-       
 
             {/* Protected Buyer Routes */}
             <Route
@@ -45,7 +46,7 @@ function App() {
             <Route
               path="/cart"
               element={
-                <RequireAuth roles={['buyer']}>
+                <RequireAuth roles={["buyer"]}>
                   <Cart />
                 </RequireAuth>
               }
@@ -55,7 +56,7 @@ function App() {
             <Route
               path="/create-auction"
               element={
-                <RequireAuth roles={['seller']}>
+                <RequireAuth roles={["seller"]}>
                   <CreateAuction />
                 </RequireAuth>
               }
